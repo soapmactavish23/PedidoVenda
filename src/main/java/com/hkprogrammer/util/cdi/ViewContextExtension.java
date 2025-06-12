@@ -1,4 +1,4 @@
-package com.hkprogrammer.util;
+package com.hkprogrammer.util.cdi;
 
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.spi.AfterBeanDiscovery;

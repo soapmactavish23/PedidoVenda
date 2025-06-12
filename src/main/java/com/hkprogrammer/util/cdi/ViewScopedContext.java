@@ -1,4 +1,4 @@
-package com.hkprogrammer.util;
+package com.hkprogrammer.util.cdi;
 
 import java.lang.annotation.Annotation;
 import java.util.Map;

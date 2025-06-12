@@ -1,5 +1,7 @@
 package com.hkprogrammer.util.jsf;
 
+import com.hkprogrammer.service.NegocioException;
+
 import javax.faces.FacesException;
 import javax.faces.application.ViewExpiredException;
 import javax.faces.context.ExceptionHandler;
@@ -32,18 +34,40 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
             ExceptionQueuedEvent event = events.next();
             ExceptionQueuedEventContext context = (ExceptionQueuedEventContext) event.getSource();
 
-            Throwable expetion = context.getException();
+            Throwable exception = context.getException();
+            NegocioException negocioException = getNegocioException(exception);
+
+            boolean handled = false;
 
             try {
-                if (expetion instanceof ViewExpiredException) {
+                if (exception instanceof ViewExpiredException) {
+                    handled = true;
                     redirect("/");
+                } else if (negocioException != null) {
+                    handled = true;
+                    FacesUtil.addErrorMessage(negocioException.getMessage());
+                } else {
+                    handled = true;
+                    redirect("/Erro.xhtml");
                 }
             } finally {
-                events.remove();
+                if (handled) {
+                    events.remove();
+                }
             }
         }
 
         getWrapped().handle();
+    }
+
+    private NegocioException getNegocioException(Throwable exception) {
+        if (exception instanceof NegocioException) {
+            return (NegocioException) exception;
+        } else if (exception.getCause() != null) {
+            return getNegocioException(exception.getCause());
+        }
+
+        return null;
     }
 
     private void redirect(String page) {
@@ -58,4 +82,5 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
             throw new FacesException(e);
         }
     }
+
 }
