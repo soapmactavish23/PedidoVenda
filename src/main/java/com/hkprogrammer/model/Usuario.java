@@ -3,23 +3,20 @@ package com.hkprogrammer.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class Cliente implements Serializable {
+public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
     private String nome;
     private String email;
-    private String documentoReceitaFederal;
-    private TipoPessoa tipo;
-    private List<Endereco> enderecos = new ArrayList<>();
+    private String senha;
+    private List<Grupo> grupos = new ArrayList<>();
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -27,7 +24,6 @@ public class Cliente implements Serializable {
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -35,33 +31,22 @@ public class Cliente implements Serializable {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getDocumentoReceitaFederal() {
-        return documentoReceitaFederal;
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public void setDocumentoReceitaFederal(String documentoReceitaFederal) {
-        this.documentoReceitaFederal = documentoReceitaFederal;
+    public List<Grupo> getGrupos() {
+        return grupos;
     }
-
-    public TipoPessoa getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoPessoa tipo) {
-        this.tipo = tipo;
-    }
-
-    public List<Endereco> getEnderecos() {
-        return enderecos;
-    }
-
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
+    public void setGrupos(List<Grupo> grupos) {
+        this.grupos = grupos;
     }
 
     @Override
@@ -71,7 +56,6 @@ public class Cliente implements Serializable {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -80,7 +64,7 @@ public class Cliente implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Cliente other = (Cliente) obj;
+        Usuario other = (Usuario) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

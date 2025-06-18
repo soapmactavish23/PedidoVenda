@@ -1,20 +1,18 @@
 package com.hkprogrammer.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.math.BigDecimal;
 
-public class Cliente implements Serializable {
+public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
     private String nome;
-    private String email;
-    private String documentoReceitaFederal;
-    private TipoPessoa tipo;
-    private List<Endereco> enderecos = new ArrayList<>();
+    private String sku;
+    private BigDecimal valorUnitario;
+    private Integer quantidadeEstoque;
+    private Categoria categoria;
 
     public Long getId() {
         return id;
@@ -32,36 +30,36 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getSku() {
+        return sku;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setSku(String sku) {
+        this.sku = sku == null ? null : sku.toUpperCase();
     }
 
-    public String getDocumentoReceitaFederal() {
-        return documentoReceitaFederal;
+    public BigDecimal getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setDocumentoReceitaFederal(String documentoReceitaFederal) {
-        this.documentoReceitaFederal = documentoReceitaFederal;
+    public void setValorUnitario(BigDecimal valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
-    public TipoPessoa getTipo() {
-        return tipo;
+    public Integer getQuantidadeEstoque() {
+        return quantidadeEstoque;
     }
 
-    public void setTipo(TipoPessoa tipo) {
-        this.tipo = tipo;
+    public void setQuantidadeEstoque(Integer quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    public List<Endereco> getEnderecos() {
-        return enderecos;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     @Override
@@ -80,7 +78,7 @@ public class Cliente implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Cliente other = (Cliente) obj;
+        Produto other = (Produto) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
