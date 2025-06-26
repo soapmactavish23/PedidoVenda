@@ -1,7 +1,10 @@
 package com.hkprogrammer.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "grupo")
 public class Grupo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -10,6 +13,8 @@ public class Grupo implements Serializable {
     private String nome;
     private String descricao;
 
+    @Id
+    @GeneratedValue
     public Long getId() {
         return id;
     }
@@ -18,6 +23,7 @@ public class Grupo implements Serializable {
         this.id = id;
     }
 
+    @Column(nullable=false, length=40)
     public String getNome() {
         return nome;
     }
@@ -26,6 +32,7 @@ public class Grupo implements Serializable {
         this.nome = nome;
     }
 
+    @Column(nullable=false, length=80)
     public String getDescricao() {
         return descricao;
     }
