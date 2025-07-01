@@ -1,6 +1,7 @@
 package com.hkprogrammer.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -54,6 +55,7 @@ public class Produto implements Serializable {
         this.valorUnitario = valorUnitario;
     }
 
+    @NotNull
     @Column(name="quantidade_estoque", nullable = false, length = 5)
     public Integer getQuantidadeEstoque() {
         return quantidadeEstoque;
