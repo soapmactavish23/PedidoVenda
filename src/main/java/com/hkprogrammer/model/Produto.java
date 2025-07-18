@@ -1,12 +1,10 @@
 package com.hkprogrammer.model;
 
+import com.hkprogrammer.validation.SKU;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -44,6 +42,7 @@ public class Produto implements Serializable {
         this.nome = nome;
     }
 
+    @SKU
     @NotBlank
     @Column(nullable = false, length = 20, unique = true)
     public String getSku() {
